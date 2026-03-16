@@ -5,6 +5,7 @@
 ## Project Summary
 
 **What This Project Is**
+
 I deployed a Windows Server 2022 virtual machine in Microsoft Azure and installed/configured Windows Server Update Services (WSUS) to centrally manage Microsoft updates. This project demonstrates how to set up an update server in the cloud, synchronize with Microsoft Update, approve updates for testing, and configure client computers to receive updates. This simulates what IT professionals do to control patching and save bandwidth in enterprise environments.
 
 **Languages Used**
@@ -13,7 +14,7 @@ I deployed a Windows Server 2022 virtual machine in Microsoft Azure and installe
 **Environments Used**
 - Microsoft Azure (Cloud Platform)
 - Windows Server 2022 (WSUS Server)
-- Windows 10 Pro (Client Machines)
+- Windows 11 (Client Machines)
 - Azure Virtual Network
 
 **Technologies/Applications/Services Used**
