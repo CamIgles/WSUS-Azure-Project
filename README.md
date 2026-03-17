@@ -207,3 +207,105 @@ I configured these settings:
 
 **Step 22: Force Group Policy Update on Client**
 On a Windows 10 client, I ran:
+gpupdate /force
+
+**Step 23: Verify Client Registry Settings**
+I opened Registry Editor and navigated to:
+`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate`
+
+The registry showed:
+- `WUServer` = http://10.0.0.4:8530 (my WSUS server IP)
+- `WUStatusServer` = http://10.0.0.4:8530
+- Under the `AU` subkey, `UseWUServer` = 1
+
+![Registry Settings](screenshots/15-registry-settings.png)
+*Registry showing WSUS settings applied via GPO*
+
+**Step 24: Force Client to Check for Updates**
+I ran the following command to force the client to contact the WSUS server:
+wuauclt /detectnow
+
+
+**Step 25: Verify Client Appears in WSUS Console**
+Back on the WSUS server, I opened the WSUS console and navigated to Computers → All Computers. After a few minutes, my Windows 10 client appeared in the list.
+
+![Client in WSUS](screenshots/16-client-in-wsus.png)
+*Client computer showing up in WSUS console*
+
+**Step 26: Move Client to TEST Group**
+I right-clicked the client computer in WSUS console and selected "Change Membership". I checked the "TEST" group and clicked OK.
+
+**Step 27: Check for Available Updates on Client**
+Back on the Windows 10 client, I opened:
+Settings → Update & Security → Windows Update
+I clicked "Check for updates" and saw that updates were being detected from the WSUS server.
+
+![Client Updates](screenshots/17-client-updates.png)
+*Client detecting updates from WSUS server*
+
+**Step 28: Approve Updates for TEST Group**
+In the WSUS console, I:
+1. Clicked "Updates" → "All Updates"
+2. Filtered by "Approval: Unapproved" and "Status: Needed by clients"
+3. Selected several critical and security updates
+4. Right-clicked and chose "Approve"
+5. Selected the "TEST" group and chose "Install" with deadline of 1 day
+
+**Step 29: Install Updates on Client**
+Back on the Windows 10 client, I clicked "Install now" in Windows Update. The updates downloaded from the WSUS server and installed successfully.
+
+**Step 30: Verify Installation Success**
+After restarting, I checked:
+- Windows Update history showed the updates as successfully installed
+- WSUS console showed the client had installed the updates
+- The client reported its status back to WSUS
+
+---
+
+### Phase 9: Verification Testing
+
+**Test 1: WSUS Server Connectivity**
+Test-NetConnection [WSUS-Server-IP] -Port 8530
+
+Result: ✅ PASSED - Client can connect to WSUS server on port 8530
+
+**Test 2: Update Detection**
+Client detects available updates from WSUS - ✅ PASSED
+
+**Test 3: Update Installation**
+Updates install successfully on client - ✅ PASSED
+
+**Test 4: Group Policy Application**
+WSUS settings correctly applied via GPO - ✅ PASSED
+
+**Test 5: Reporting**
+WSUS console shows client status and installed updates - ✅ PASSED
+
+---
+
+### Final Status
+
+| Component | Status |
+|-----------|--------|
+| Azure VM Deployment | ✅ Complete |
+| WSUS Server Installation | ✅ Complete |
+| Initial Synchronization | ✅ Downloaded 1,200+ updates |
+| Computer Groups | ✅ Created |
+| Azure Networking (Port 8530) | ✅ Configured |
+| Group Policy Configuration | ✅ Applied to clients |
+| Client Detection | ✅ Working |
+| Update Installation | ✅ Successful |
+| WSUS Reporting | ✅ Working |
+
+---
+
+## What I Learned
+
+- How to deploy Windows Server VMs in Microsoft Azure
+- How to configure Azure networking for specific services
+- How WSUS centralizes update management for an organization
+- How Group Policy directs clients to the WSUS server
+- The importance of testing updates before wide deployment
+- How to save bandwidth by downloading updates once to the server
+- How to verify client-server communication for updates
+- How to approve and deploy updates in phases
