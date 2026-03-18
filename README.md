@@ -229,9 +229,6 @@ wuauclt /detectnow
 **Step 25: Verify Client Appears in WSUS Console**
 Back on the WSUS server, I opened the WSUS console and navigated to Computers → All Computers. After a few minutes, my Windows 10 client appeared in the list.
 
-![Client in WSUS](screenshots/16-client-in-wsus.png)
-*Client computer showing up in WSUS console*
-
 **Step 26: Move Client to TEST Group**
 I right-clicked the client computer in WSUS console and selected "Change Membership". I checked the "TEST" group and clicked OK.
 
@@ -240,8 +237,6 @@ Back on the Windows 10 client, I opened:
 Settings → Update & Security → Windows Update
 I clicked "Check for updates" and saw that updates were being detected from the WSUS server.
 
-![Client Updates](screenshots/17-client-updates.png)
-*Client detecting updates from WSUS server*
 
 **Step 28: Approve Updates for TEST Group**
 In the WSUS console, I:
