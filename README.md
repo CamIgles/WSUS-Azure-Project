@@ -34,7 +34,7 @@ I deployed a Windows Server 2022 virtual machine in Microsoft Azure and installe
 ### Phase 1: Azure Environment Setup
 
 **Step 1: Create Azure Free Account**
-I signed up for an Azure free account at [Azure](portal.azure.com). The free account includes $200 credit for the first 30 days and 12 months of free services.
+I signed up for an Azure free account at [Azure](https://azure.microsoft.com/). The free account includes $200 credit for the first 30 days and 12 months of free services.
 
 **Step 2: Create Resource Group**
 In the Azure portal, I created a new resource group named "WSUS-Lab-RG" to organize all resources for this project.
