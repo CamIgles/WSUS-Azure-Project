@@ -1,4 +1,4 @@
-![Banner](screenshots/00-Banner.png)
+![Banner](screenshots/00-banner.png)
 # Windows Server 2022: Install, Configure, and Deploy Windows Server Update Services (WSUS) on Microsoft Azure
 
 ---
