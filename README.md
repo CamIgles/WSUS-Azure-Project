@@ -167,6 +167,7 @@ I created target groups for different deployment rings:
 - SERVERS - For server systems
 
 ![Computer Groups](screenshots/12-computer-groups.png)
+
 *Creating computer groups in WSUS*
 
 ---
